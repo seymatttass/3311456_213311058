@@ -40,6 +40,7 @@ dependencies:
   path_provider: ^2.0.15
   http: ^0.13.4
   url_launcher: ^6.0.9
+  foundation_flutter: ^0.2.0
 
 dev_dependencies:
   flutter_test:

@@ -4,11 +4,28 @@ import 'package:eating/screen/tarifler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/foundation.dart';
 
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+
+  if(kIsWeb){
+    await Firebase.initializeApp(
+      options: FirebaseOptions(apiKey: "AIzaSyCEpSck_WphieFGa1qK7MYTuAmKOarfMss",
+          appId: "1:596733719892:web:533505856d1ae00d9a04c1",
+          messagingSenderId: "596733719892",
+          projectId: "eating-1047d",
+          storageBucket: "eating-1047d.appspot.com",
+    )
+    );
+  }else{
+    await Firebase.initializeApp(
+
+    );
+    }
 
 
 
@@ -27,7 +44,7 @@ class SecondScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent, // Set background color to transparent
+      backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -767,8 +784,6 @@ class databaseScreen extends StatelessWidget {
                     // İlk veriyi sil
                     await DatabaseHelper.deleteData(1);
                     await DatabaseHelper.deleteData(2);
-
-
                     // Verileri getirme
                     List<Map<String, dynamic>> data =
                     await DatabaseHelper.getAllData();
