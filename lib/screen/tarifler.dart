@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'dart:io';
 
 
 
@@ -28,10 +28,19 @@ class Tarif1 extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
+
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20),
+            Container(
+              height: 200,
+              child: Image.asset(
+                'images/0ee3e4360f27beb3e0c8cd5f7a907347.jpg', // Resim yolunuza uygun olarak değiştirin
+                fit: BoxFit.cover,
+              ),
+            ),
+
             Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
@@ -44,7 +53,7 @@ class Tarif1 extends StatelessWidget {
                 'Kremalı mantar sosunu haşlanmış makarnanın üzerine dökün. Karıştırarak sosu makarnaya yedirin.'
                 'Tuz ve karabiber ile tatlandırın. İsteğe bağlı olarak maydanoz veya fesleğen yaprakları ile süsleyin.'
                 'Kremalı mantarlı makarna sıcak servis yapın ve afiyetle tüketin.\nAfiyet olsun!',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 15.0),
               ),
             ),
           ],
@@ -71,9 +80,16 @@ class Tarif2 extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20),
+            Container(
+              height: 200,
+              child: Image.asset(
+                'images/2c5778c05a723ee81716408649282356.jpg', // Resim yolunuza uygun olarak değiştirin
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Text(
@@ -85,7 +101,7 @@ class Tarif2 extends StatelessWidget {
                 'Çorba kıvamına gelene kadar su ekleyebilirsiniz. Tuz ve karabiber ile tatlandırın.'
                 'Çorba kaynamaya başlayınca altını kısın ve 5-10 dakika daha pişirin, arada karıştırarak çorbanın dibine yapışmasını engelleyin.'
                 'Servis yaparken üzerine rendelenmiş kaşar peyniri veya taze doğranmış maydanoz serpiştirebilirsiniz.',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 15.0),
               ),
             ),
           ],
@@ -112,9 +128,16 @@ class Tarif3 extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20),
+            Container(
+              height: 200,
+              child: Image.asset(
+                'images/6a4465318f3cf72fa0708d7dc31d05b1.jpg', // Resim yolunuza uygun olarak değiştirin
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -126,7 +149,7 @@ class Tarif3 extends StatelessWidget {
                 'Poğaçaları yağlı kağıt serili fırın tepsisine yerleştirin. Üzerlerine çırpılmış yumurta sürün ve çörek otu veya susam serpin.'
                 'Önceden ısıtılmış 180 derece fırında üzerleri kızarana kadar pişirin, yaklaşık 20-25 dakika.'
                 'Fırından çıkan poğaçaları ılık veya oda sıcaklığında servis yapın.\nAfiyet olsun!',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 15.0),
               ),
             ),
           ],
@@ -153,9 +176,16 @@ class Tarif4 extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20),
+            Container(
+              height: 200,
+              child: Image.asset(
+                'images/30da50228346d0976ff6f87e7eb5db29.jpg', // Resim yolunuza uygun olarak değiştirin
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -170,7 +200,7 @@ class Tarif4 extends StatelessWidget {
                 'Üzerine dilimlenmiş sucuk, jambon, mantar, zeytin, yeşil biber, domates, soğan veya istediğiniz diğer malzemeleri serpiştirin.'
                 'Rendelenmiş mozarella peyniri ve kaşar peynirini üzerine serpin.'
                 'Önceden ısıtılmış 200 derece fırında pizza tabanı altın rengini alana kadar\nAfiyet olsun!',
-                style: TextStyle(fontSize: 18.0),
+                style: TextStyle(fontSize: 14.0),
               ),
             ),
           ],
@@ -197,9 +227,16 @@ class Tarif5 extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20),
+            Container(
+              height: 200,
+              child: Image.asset(
+                'images/a99b71b3ab0b260f52483c861f7cea28.jpg', // Resim yolunuza uygun olarak değiştirin
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -211,7 +248,7 @@ class Tarif5 extends StatelessWidget {
                 'Haşlanmış makarnayı sosun içine ekleyin ve iyice karıştırın, sosun makarnaya iyice yapışmasını sağlayın.'
                 'Servis tabağına alın ve üzerine rendelenmiş parmesan peyniri veya isteğe bağlı olarak diğer peynir çeşitlerini serpiştirin.'
                 'Sıcak olarak servis yapın ve afiyetle tüketin.\nAfiyet olsun!',
-                style: TextStyle(fontSize: 19.0),
+                style: TextStyle(fontSize: 15.0),
               ),
             ),
           ],
@@ -238,9 +275,16 @@ class Tarif6 extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20),
+            Container(
+              height: 200,
+              child: Image.asset(
+                'images/8a341af0d2a37b0836be4e75b938d715.jpg', // Resim yolunuza uygun olarak değiştirin
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -255,7 +299,7 @@ class Tarif6 extends StatelessWidget {
                 'Üzerine çırpılmış yumurta sürün.'
                 'Önceden ısıtılmış 180 derece fırında üzeri kızarana kadar pişirin, yaklaşık 25-30 dakika.'
                 'Sıcak veya ılık olarak servis yapın.\nAfiyet olsun!',
-                style: TextStyle(fontSize: 18.0),
+                style: TextStyle(fontSize: 14.0),
               ),
             ),
           ],
@@ -282,9 +326,16 @@ class Tarif7 extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20),
+            Container(
+              height: 200,
+              child: Image.asset(
+                'images/bde2d4fad603ab5610fb5ca8694778d1.jpg', // Resim yolunuza uygun olarak değiştirin
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -295,7 +346,7 @@ class Tarif7 extends StatelessWidget {
                 'Pişen pirzolaları servis tabağına alın ve birkaç dakika dinlendirin.'
                 'Dilimlenmiş patates, sebzeler veya salata ile servis yapın.'
                 'Sıcak olarak servis yapın ve afiyetle tüketin.\nAfiyet olsun!',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 15.0),
               ),
             ),
           ],
@@ -311,7 +362,7 @@ class Tarif8 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
-        title: Text('Hünkarbeğendi'),
+        title: Text('Hümkarbeğendi'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -322,9 +373,16 @@ class Tarif8 extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 20),
+            Container(
+              height: 200,
+              child: Image.asset(
+                'images/d36b071f479f174a38cc4d1e4b75c098.jpg', // Resim yolunuza uygun olarak değiştirin
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -340,7 +398,7 @@ class Tarif8 extends StatelessWidget {
                 'Servis tabağına beğendi sosunu yayın ve üzerine etli iç harcını ekleyin.'
                 'Üzeri için, bir tavada tereyağını eritin ve pul biberi ekleyin. Pul biberi kızdırarak tereyağına tat verin.'
                 'Pul biberli tereyağını hünkarbeğendiye gezdir.\nAfiyet olsun!',
-                style: TextStyle(fontSize: 17.0),
+                style: TextStyle(fontSize: 13.0),
               ),
             ),
           ],
@@ -349,6 +407,10 @@ class Tarif8 extends StatelessWidget {
     );
   }
 }
+
+
+
+
 
 
 
@@ -429,107 +491,26 @@ class FoodPage extends StatelessWidget {
 
 
 
-//ÖZEL TARİFLERİM
 
-class Recipe {
-  final String title;
-  final String description;
 
-  Recipe({required this.title, required this.description});
-}
 
-class MyRecipesPage extends StatefulWidget {
-  @override
-  _MyRecipesPageState createState() => _MyRecipesPageState();
-}
 
-class _MyRecipesPageState extends State<MyRecipesPage> {
-  List<Recipe> recipes = [];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Özel Tariflerim'),
-        backgroundColor: Colors.deepPurple,
-      ),
-      body: ListView.builder(
-        itemCount: recipes.length,
-        itemBuilder: (context, index) {
-          final recipe = recipes[index];
-          return ListTile(
-            title: Text(recipe.title),
-            subtitle: Text(recipe.description),
-          );
-        },
-      ),
-      floatingActionButton: Stack(
-        children: [
-          Positioned(
-            bottom: 16.0,
-            right: 16.0,
-            child: FloatingActionButton(
-              onPressed: () {
-                // Ekleme işlemi için dialog aç
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    String title = '';
-                    String description = '';
 
-                    return AlertDialog(
-                      title: Text('Tarif Ekle'),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextField(
-                            decoration: InputDecoration(labelText: 'Başlık'),
-                            onChanged: (value) {
-                              title = value;
-                            },
-                          ),
-                          TextField(
-                            decoration: InputDecoration(labelText: 'Açıklama'),
-                            onChanged: (value) {
-                              description = value;
-                            },
-                          ),
-                        ],
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Tarifi listeye ekle ve dialogu kapat
-                            setState(() {
-                              recipes.add(Recipe(
-                                  title: title, description: description));
-                            });
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                                Colors.redAccent, // Butonun arka plan rengi
-                          ),
-                          child: Text('Ekle'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              backgroundColor:
-                  Colors.deepPurple, // FloatingActionButton'ın arka plan rengi
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -568,48 +549,83 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         title: Text("Kullanıcı Kaydı"),
       ),
-      body: SingleChildScrollView(
-        // Add SingleChildScrollView
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              TextField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: "Ad"),
-              ),
-              TextField(
-                controller: _ageController,
-                decoration: InputDecoration(labelText: "Yaş"),
-                keyboardType: TextInputType.number,
-              ),
-              TextField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: "E-posta"),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(labelText: "Şifre"),
-                obscureText: true,
-              ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: registerUser,
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.deepPurple),
-                ),
-                child: Text("Kaydet"),
-              ),
-            ],
+      body: Stack(
+          children:[
+      Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/purple.jpeg"), // Arka plan resmi dosya yolunu buraya girin
+            fit: BoxFit.cover,
           ),
         ),
+        ),
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                TextField(
+                  controller: _nameController,
+                  decoration: InputDecoration(labelText: "Ad",
+                    filled: true, // Arka planın dolu olmasını sağlar
+                    fillColor: Colors.white24, // Arka plan rengini belirler
+                    labelStyle: TextStyle(
+                      color: Colors.white, // Yazı rengini burada belirleyin
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: _ageController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(labelText: "Yaş",
+                    filled: true, // Arka planın dolu olmasını sağlar
+                    fillColor: Colors.white24, // Arka plan rengini belirler
+                    labelStyle: TextStyle(
+                      color: Colors.white, // Yazı rengini burada belirleyin
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(labelText: "E-posta",
+                    filled: true, // Arka planın dolu olmasını sağlar
+                    fillColor: Colors.white24, // Arka plan rengini belirler
+                    labelStyle: TextStyle(
+                      color: Colors.white, // Yazı rengini burada belirleyin
+                    ),
+                  ),
+
+                ),
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(labelText: "Şifre",
+                    filled: true, // Arka planın dolu olmasını sağlar
+                    fillColor: Colors.white24, // Arka plan rengini belirler
+                    labelStyle: TextStyle(
+                      color: Colors.white, // Yazı rengini burada belirleyin
+                    ),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: registerUser,
+                  style: ButtonStyle(
+                    backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.deepPurple),
+                  ),
+                  child: Text("Kaydet"),
+                ),
+              ],
+            ),
+          ),
+        ),
+    ],
       ),
     );
   }
@@ -619,72 +635,3 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
 
 
 
-
-//VERİTABANI SQLİTE
-
-class DatabaseHelper {
-  static final _databaseName = "my_database.db";
-  static final _databaseVersion = 1;
-
-  static final table = 'my_table';
-  static final columnId = 'id';
-  static final columnName = 'name';
-  static final columnAge = 'age';
-
-  static Future<Database> open() async {
-    final databasesPath = await getDatabasesPath();
-    final path = join(databasesPath, _databaseName);
-    return openDatabase(
-      path,
-      version: _databaseVersion,
-      onCreate: (db, version) {
-        return db.execute('''
-          CREATE TABLE $table (
-            $columnId INTEGER PRIMARY KEY,
-            $columnName TEXT NOT NULL,
-            $columnAge INTEGER NOT NULL
-          )
-        ''');
-      },
-    );
-  }
-
-  static Future<void> insertData(String name, int age) async {
-    final db = await open();
-    await db.insert(
-      table,
-      {
-        columnName: name,
-        columnAge: age,
-      },
-    );
-  }
-
-  static Future<List<Map<String, dynamic>>> getAllData() async {
-    final db = await open();
-    return db.query(table);
-  }
-
-  void main() async {
-    // Veritabanı bağlantısını açma
-    final db = await DatabaseHelper.open();
-
-    // Verileri getirme
-    List<Map<String, dynamic>> data = await DatabaseHelper.getAllData();
-
-    // Verileri çıktı olarak gösterme
-    print(data);
-
-    // Veritabanı bağlantısını kapatma
-    await db.close();
-  }
-
-  static Future<void> deleteData(int id) async {
-    final db = await open();
-    await db.delete(
-      table,
-      where: '$columnId = ?',
-      whereArgs: [id],
-    );
-  }
-}

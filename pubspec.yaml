@@ -38,6 +38,7 @@ dependencies:
   firebase_auth: ^4.6.2
   sqflite: any
   path_provider: ^2.0.15
+  path: ^1.8.0
   http: ^0.13.4
   url_launcher: ^6.0.9
   foundation_flutter: ^0.2.0
@@ -81,6 +82,12 @@ flutter:
     - images/Fondos Para Word _ Fondos De Word, Fondos De Pantalla De  CB8.jpeg
     - images/Ggg.jpeg
     - images/018c7c73-ead4-4958-8625-b102588a54b8.jpeg
+    - images/1ed0ef87-f73a-4c45-8114-980a58b60c52.jpeg
+    - images/notluk.jpeg
+    - images/giriş.jpeg
+    - images/fav.jpeg
+    - images/123.jpeg
+
 
 
   #   - images/a_dot_burr.jpeg

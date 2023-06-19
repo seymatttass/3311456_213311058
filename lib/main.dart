@@ -5,11 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart';
+import 'package:eating/database/data.dart';
 
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+
 
 
   if(kIsWeb){
@@ -78,34 +79,6 @@ class SecondScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MyRecipesPage(),
-                        ),
-                      );
-                    },
-                    title: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.restaurant_menu_outlined,
-                          size: 50,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 10.0),
-                        Text(
-                          'ÖZEL TARİFLERİM',
-                          style: TextStyle(color: Colors.white, fontSize: 20.0),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                Padding(
-                  padding: EdgeInsets.only(left: 40.0),
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
                           builder: (context) => FoodPage(),
                         ),
                       );
@@ -166,8 +139,8 @@ class SecondScreen extends StatelessWidget {
             label: 'Favoriler',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.data_array, color: Colors.deepPurple),
-            label: 'Veriler',
+            icon: Icon(Icons.restaurant_menu_outlined, color: Colors.deepPurple),
+            label: 'Özel Tarifler',
           ),
         ],
         onTap: (index) {
@@ -184,7 +157,7 @@ class SecondScreen extends StatelessWidget {
           } else if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => databaseScreen()),
+              MaterialPageRoute(builder: (context) => NotesScreen()),
             );
           }
         },
@@ -209,7 +182,7 @@ class HomeScreen extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('images/86f779a70c7f78ef4b785ebd5cb8fa54.jpg'),
+            image: AssetImage('images/giriş.jpeg'),
           ),
         ),
         child: Container(
@@ -256,9 +229,9 @@ class HomeScreen extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  backgroundColor: Colors.brown,
+                  backgroundColor: Colors.deepPurple,
                 ),
-                child: const Text('İlerle'),
+                child: const Text('Hoş geldiniz'),
               ),
             ],
           ),
@@ -399,89 +372,99 @@ class _ProfilScreenState extends State<ProfilScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
       resizeToAvoidBottomInset: false,
-      body: Form(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  radius: 80.0,
-                  backgroundColor: Colors.white54,
-                  backgroundImage: AssetImage('images/Contacts app icon.png'),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/1ed0ef87-f73a-4c45-8114-980a58b60c52.jpeg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Form(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    radius: 80.0,
+                    backgroundColor: Colors.white54,
+                    backgroundImage: AssetImage('images/Contacts app icon.png'),
+                  ),
                 ),
-              ),
-              SizedBox(height: 30.0),
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                SizedBox(height: 30.0),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    labelText: 'E-posta',
+                    labelStyle: TextStyle(color: Colors.white),
+                    filled: true, // Arka planı doldur
+                    fillColor: Colors.white24, // Arka plan rengini belirle
+                    border: OutlineInputBorder(),
+
                   ),
-                  labelText: 'E-posta',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
                 ),
-              ),
-              SizedBox(height: 10.0),
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                SizedBox(height: 10.0),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    labelText: 'Şifre',
+                    labelStyle: TextStyle(color: Colors.white),
+                    filled: true, // Arka planı doldur
+                    fillColor: Colors.white24, // Arka plan rengini belirle
+                    border: OutlineInputBorder(),
                   ),
-                  labelText: 'Şifre',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
+                  obscureText: true,
                 ),
-                obscureText: true,
-              ),
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white54, // Arka plan rengini burada belirleyebiliriz
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white24,
+                      ),
+                      child: Text(
+                        'Üye ol',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UserRegistrationScreen(),
+                          ),
+                        );
+                      },
                     ),
-                    child: Text(
-                      'Üye ol',
-                      style: TextStyle(color: Colors.white),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white24,
+                      ),
+                      child: Text(
+                        'Giriş yap',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: loginUser,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => UserRegistrationScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white54, // Arka plan rengini burada belirleyebiliriz
-                    ),
-                    child: Text(
-                      'Giriş yap',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: loginUser,
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-
 
 
 
@@ -494,216 +477,283 @@ class BegeniScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white54,
-        body: SafeArea(
-          child: Stack(
-            children: <Widget>[
-          Positioned.fill(
-          child: Image.asset(
-            'images/kkk.png',
-            fit: BoxFit.cover,
-          ),
-        ),
-         Column(
+      body: SafeArea(
+        child: Stack(
           children: <Widget>[
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Tarif1(),
-                          ),
-                        );
-                      } ,
-                      child: Container(
-                        color: Colors.white,
-                        constraints: BoxConstraints.expand(),
-                        child: Image.asset(
-                            'images/0ee3e4360f27beb3e0c8cd5f7a907347.jpg',
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Tarif2(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        constraints: BoxConstraints.expand(),
-                        color: Colors.white,
-                        child: Image.asset(
-                            'images/2c5778c05a723ee81716408649282356.jpg',
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                  ),
-                ],
+            Positioned.fill(
+              child: Image.asset(
+                'images/83880f26-12c1-46d1-bc8a-f26acc544f44.jpeg',
+                fit: BoxFit.cover,
               ),
             ),
-            Container(
-              width: 100,
-              child: Divider(height: 20, color: Colors.greenAccent),
-            ),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Tarif3(),
+            Column(
+              children: <Widget>[
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Tarif1(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            color: Colors.white24,
+                            constraints: BoxConstraints.expand(),
+                            child: Center(
+                              child: Text(
+                                'Kreamlı Mantarlı Makarna',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple,
+                                ),
+                                textAlign: TextAlign.center, // Metni ortalar
+                              ),
+                            ),
+                          ),
                         ),
-                      );},
-                      child: Container(
-                        constraints: BoxConstraints.expand(),
-                        color: Colors.white,
-                        child: Image.asset(
-                            'images/6a4465318f3cf72fa0708d7dc31d05b1.jpg',
-                            fit: BoxFit.cover),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Tarif4(),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Tarif2(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            constraints: BoxConstraints.expand(),
+                            color: Colors.white24,
+                            child: Center(
+                              child: Text(
+                                'Patates Çorbası',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple, // Rengi deepPurple olarak ayarla
+                                ),
+                                textAlign: TextAlign.center, // Metni ortala
+                              ),
+                            ),
                           ),
-                        );
-                      },
-                      child: Container(
-                        constraints: BoxConstraints.expand(),
-                        color: Colors.white,
-                        child: Image.asset(
-                            'images/30da50228346d0976ff6f87e7eb5db29.jpg',
-                            fit: BoxFit.cover),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Container(
-              width: 100,
-              child: Divider(height: 20, color: Colors.greenAccent),
-            ),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Tarif5(),
+                ),
+                Container(
+                  width: 100,
+                  child: Divider(height: 20, color: Colors.deepPurple),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Tarif3(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            constraints: BoxConstraints.expand(),
+                            color: Colors.white24,
+                            child: Center(
+                              child: Text(
+                                'Poğaça',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple, // Rengi deepPurple olarak ayarla
+                                ),
+                                textAlign: TextAlign.center, // Metni ortala
+                              ),
+                            ),
                           ),
-                        );
-                      },
-                      child: Container(
-                        constraints: BoxConstraints.expand(),
-                        color: Colors.white,
-                        child: Image.asset(
-                            'images/a99b71b3ab0b260f52483c861f7cea28.jpg',
-                            fit: BoxFit.cover),
+                        ),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Tarif6(),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Tarif4(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            constraints: BoxConstraints.expand(),
+                            color: Colors.white24,
+                            child: Center(
+                              child: Text(
+                                'Karışık Pizza',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple, // Rengi deepPurple olarak ayarla
+                                ),
+                                textAlign: TextAlign.center, // Metni ortala
+                              ),
+                            ),
                           ),
-                        );
-                      },
-                      child: Container(
-                        constraints: BoxConstraints.expand(),
-                        color: Colors.white,
-                        child: Image.asset(
-                            'images/8a341af0d2a37b0836be4e75b938d715.jpg',
-                            fit: BoxFit.cover),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Container(
-              width: 100,
-              child: Divider(height: 20, color: Colors.greenAccent),
-            ),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Tarif7(),
+                ),
+                Container(
+                  width: 100,
+                  child: Divider(height: 20, color: Colors.deepPurple),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Tarif5(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            constraints: BoxConstraints.expand(),
+                            color: Colors.white24,
+                            child: Center(
+                              child: Text(
+                                'Napolyon Soslu Makarna',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple, // Rengi deepPurple olarak ayarla
+                                ),
+                                textAlign: TextAlign.center, // Metni ortala
+                              ),
+                            ),
                           ),
-                        );
-                      },
-                      child: Container(
-                        constraints: BoxConstraints.expand(),
-                        color: Colors.white,
-                        child: Image.asset(
-                            'images/bde2d4fad603ab5610fb5ca8694778d1.jpg',
-                            fit: BoxFit.cover),
+                        ),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Tarif8(),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Tarif6(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            constraints: BoxConstraints.expand(),
+                            color: Colors.white24,
+                            child: Center(
+                              child: Text(
+                                'Ispanaklı Börek',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple, // Rengi deepPurple olarak ayarla
+                                ),
+                                textAlign: TextAlign.center, // Metni ortala
+                              ),
+                            ),
                           ),
-                        );
-                      },
-                      child: Container(
-                        constraints: BoxConstraints.expand(),
-                        color: Colors.white,
-                        child: Image.asset(
-                            'images/d36b071f479f174a38cc4d1e4b75c098.jpg',
-                            fit: BoxFit.cover),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Container(
-              width: 100,
-              child: Divider(height: 20, color: Colors.greenAccent),
+                ),
+                Container(
+                  width: 100,
+                  child: Divider(height: 20, color: Colors.deepPurple),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Tarif7(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            constraints: BoxConstraints.expand(),
+                            color: Colors.white24,
+                            child: Center(
+                              child: Text(
+                                'Pirzola',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple, // Rengi deepPurple olarak ayarla
+                                ),
+                                textAlign: TextAlign.center, // Metni ortala
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Tarif8(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            constraints: BoxConstraints.expand(),
+                            color: Colors.white24,
+                            child: Center(
+                              child: Text(
+                                'Hünkarbeğendi',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepPurple, // Rengi deepPurple olarak ayarla
+                                ),
+                                textAlign: TextAlign.center, // Metni ortala
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  child: Divider(height: 20, color: Colors.deepPurple),
+                ),
+              ],
             ),
           ],
         ),
-      ],
       ),
-    ),
     );
   }
 }
+
+
 
 
 
@@ -730,7 +780,7 @@ void openWebsite() async {
 
 
 //DATABASE EKRANI SAYFASI SQLİTE
-
+ /*
 class databaseScreen extends StatelessWidget {
   const databaseScreen({Key? key}) : super(key: key);
 
@@ -784,6 +834,7 @@ class databaseScreen extends StatelessWidget {
                     // İlk veriyi sil
                     await DatabaseHelper.deleteData(1);
                     await DatabaseHelper.deleteData(2);
+
                     // Verileri getirme
                     List<Map<String, dynamic>> data =
                     await DatabaseHelper.getAllData();
@@ -814,7 +865,7 @@ class databaseScreen extends StatelessWidget {
     );
   }
 }
-
+*/
 
 
 
