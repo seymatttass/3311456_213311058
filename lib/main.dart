@@ -103,7 +103,7 @@ class SecondScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 40.0),
                   child: ListTile(
-                    onTap: () {
+                    onLongPress: () {
                       openWebsite();
                     },
                     title: Row(

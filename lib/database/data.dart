@@ -17,7 +17,7 @@ class _NotesScreenState extends State<NotesScreen> {
     super.initState();
     _queryData();
   }
-
+  
   Future<Database> _openDatabase() async {
     final String databasePath = await getDatabasesPath();
     final String path = join(databasePath, databaseName);
@@ -54,10 +54,6 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-        title: Text('Özel Tariflerim'),
-      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -82,9 +78,10 @@ class _NotesScreenState extends State<NotesScreen> {
                     color: Colors.deepPurple, // Yazı rengi deeppurple olarak güncellendi
                   ),
                   decoration: InputDecoration(
-                    labelText: '    Tarif:',
+                    labelText: '    Tarif Ekle:',
                     labelStyle: TextStyle(
                       color: Colors.deepPurple,
+                      fontSize: 25,
                     ),
                     border: InputBorder.none,
                   ),
@@ -97,10 +94,10 @@ class _NotesScreenState extends State<NotesScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.deepPurple,
                   ),
-                  child: Text('Notunu Kaydet'),
+                  child: Text('Tarifi Kaydet'),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 40),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white24,
