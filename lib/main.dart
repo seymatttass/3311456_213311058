@@ -50,12 +50,12 @@ class SecondScreen extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/Tela inicial 3.jpeg'), // Replace with your image path
-            fit: BoxFit.cover,
+            fit: BoxFit.cover,      //resim tüm containerı kaplar.
           ),
         ),
         child: SafeArea(
           child: Center(
-            child: Column(
+            child: Column(            //widgetları dikey sıralar
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 CircleAvatar(
@@ -67,13 +67,13 @@ class SecondScreen extends StatelessWidget {
                 Text(
                   'Bütün tarifler bir tık uzağınızda',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16,           //yazı boyutu
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(width: 10.0, height: 30.0),
+                SizedBox(width: 10.0, height: 30.0),     //boşluk
                 Padding(
-                  padding: EdgeInsets.only(left: 40.0),
+                  padding: EdgeInsets.only(left: 40.0),     //sadece soldan boşluk
                   child: ListTile(
                     onTap: () {
                       Navigator.push(
@@ -103,7 +103,7 @@ class SecondScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 40.0),
                   child: ListTile(
-                    onLongPress: () {
+                    onLongPress: () {        //uzun tıklama
                       openWebsite();
                     },
                     title: Row(
