@@ -8,7 +8,7 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-  final String databaseName = 'myDatabase.db';
+  final String databaseName = 'Database.db';
   final TextEditingController nameController = TextEditingController();
   List<Map<String, dynamic>> queryResults = [];
 
@@ -83,7 +83,6 @@ class _NotesScreenState extends State<NotesScreen> {
                       color: Colors.deepPurple,
                       fontSize: 25,
                     ),
-                    border: InputBorder.none,
                   ),
                 ),
               ),

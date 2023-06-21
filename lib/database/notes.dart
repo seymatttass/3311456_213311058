@@ -9,7 +9,7 @@ import 'package:sqflite/sqflite.dart';
 //SQLİTE VERİTABANI İŞLEMLERİ
 
 void main() async {
-  final String databaseName = 'myDatabase.db';
+  final String databaseName = 'Database.db';
   final String databasePath = await getDatabasesPath();
   final String path = join(databasePath, databaseName);
 
@@ -20,21 +20,17 @@ void main() async {
       });
 
   // Veri ekleme
-  await database.insert('myTable', {'name': 'Başlık 1', 'content': 'Not içeriği 1'});
+  await database.insert('myTable', {'name': 'Başlık ', 'content': 'Not içeriği '});
 
   // Veri güncelleme
   await database.update('myTable', {'content': 'Yeni not içeriği'},
-      where: 'name = ?', whereArgs: ['Başlık 1']);
+      where: 'name = ?', whereArgs: ['Başlık ']);
 
   // Tüm verileri sorgulama
   final List<Map<String, dynamic>> rows = await database.query('myTable');
 
-  // İsim bazında veri sorgulama
-  final List<Map<String, dynamic>> johnRows =
-  await database.query('myTable', where: 'name = ?', whereArgs: ['Başlık 1']);
-
   // Veri silme
-  await database.delete('myTable', where: 'name = ?', whereArgs: ['Başlık 1']);
+  await database.delete('myTable', where: 'name = ?', whereArgs: ['Başlık ']);
 
   runApp(MyApp());
 }

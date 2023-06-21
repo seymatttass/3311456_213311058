@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 
@@ -509,7 +507,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
   }
 
   void registerUser() async {
-    // Your registration code...
+
   }
 
   @override
@@ -524,7 +522,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
       Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/purple.jpeg"), // Arka plan resmi dosya yolunu buraya girin
+            image: AssetImage("images/purple.jpeg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -537,10 +535,10 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                 TextField(
                   controller: _nameController,
                   decoration: InputDecoration(labelText: "Ad",
-                    filled: true, // Arka planın dolu olmasını sağlar
-                    fillColor: Colors.white24, // Arka plan rengini belirler
+                    filled: true,
+                    fillColor: Colors.white24,
                     labelStyle: TextStyle(
-                      color: Colors.white, // Yazı rengini burada belirleyin
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -548,10 +546,10 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                   controller: _ageController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(labelText: "Yaş",
-                    filled: true, // Arka planın dolu olmasını sağlar
-                    fillColor: Colors.white24, // Arka plan rengini belirler
+                    filled: true,
+                    fillColor: Colors.white24,
                     labelStyle: TextStyle(
-                      color: Colors.white, // Yazı rengini burada belirleyin
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -559,10 +557,10 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(labelText: "E-posta",
-                    filled: true, // Arka planın dolu olmasını sağlar
-                    fillColor: Colors.white24, // Arka plan rengini belirler
+                    filled: true,
+                    fillColor: Colors.white24, // Arka plan rengi
                     labelStyle: TextStyle(
-                      color: Colors.white, // Yazı rengini burada belirleyin
+                      color: Colors.white,
                     ),
                   ),
 
@@ -570,10 +568,10 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                 TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(labelText: "Şifre",
-                    filled: true, // Arka planın dolu olmasını sağlar
-                    fillColor: Colors.white24, // Arka plan rengini belirler
+                    filled: true,
+                    fillColor: Colors.white24,
                     labelStyle: TextStyle(
-                      color: Colors.white, // Yazı rengini burada belirleyin
+                      color: Colors.white,
                     ),
                   ),
                   obscureText: true,
@@ -583,7 +581,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                   onPressed: registerUser,
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.deepPurple),
+                    MaterialStateProperty.all<Color>(Colors.deepPurple),  //Buton rengi
                   ),
                   child: Text("Kaydet"),
                 ),

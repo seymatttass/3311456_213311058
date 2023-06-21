@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:eating/screen/tarifler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';   //kIsWeb
 import 'package:flutter/foundation.dart';
 import 'package:eating/database/data.dart';
 
@@ -188,7 +188,7 @@ class HomeScreen extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 100),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient: LinearGradient(   //renk geçiş
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
@@ -339,7 +339,10 @@ class _ProfilScreenState extends State<ProfilScreen> {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    // Giriş başarılı olduğunda yapılması gereken işlemleri buraya ekleyebilirsiniz
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SecondScreen()),
+                    );
                   },
                   child: Text("Tamam"),
                 ),
@@ -404,7 +407,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                     labelText: 'E-posta',
                     labelStyle: TextStyle(color: Colors.white),
                     filled: true, // Arka planı doldur
-                    fillColor: Colors.white24, // Arka plan rengini belirle
+                    fillColor: Colors.white24,
                     border: OutlineInputBorder(),
 
                   ),
