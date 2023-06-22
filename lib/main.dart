@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';   //authentication
 import 'package:url_launcher/url_launcher.dart';    //web
 import 'package:flutter/foundation.dart';      //kIsWeb
 import 'package:eating/database/data.dart';
+import 'package:eating/database/notes.dart';
 
 void main() async {
 
@@ -190,6 +191,32 @@ class SecondScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(left: 40.0),
+                  child: ListTile(
+                    onLongPress: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePageState()),
+                      );
+                    },
+                    title: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.data_array,
+                          size: 40,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: 10.0),
+                        Text(
+                          'FireStore',
+                          style: TextStyle(color: Colors.white, fontSize: 20.0),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
               ],
             ),
           ),
