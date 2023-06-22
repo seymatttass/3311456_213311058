@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:path_provider/path_provider.dart';
-
 
 
 
@@ -413,44 +410,44 @@ class Tarif8 extends StatelessWidget {
 
 class FoodItem {
   final String name;
-  final int rating;
+  final int star;
 
-  FoodItem({required this.name, required this.rating});
+  FoodItem({required this.name, required this.star});
 }
 
 class FoodPage extends StatelessWidget {
   final List<FoodItem> foodList = [
-    FoodItem(name: 'Karışık pizza', rating: 4),
-    FoodItem(name: 'Patates çorbası', rating: 3),
-    FoodItem(name: 'Kuru fasulye', rating: 5),
-    FoodItem(name: 'Patlıcan musakka', rating: 2),
-    FoodItem(name: 'Kuru biber dolması', rating: 4),
-    FoodItem(name: 'Domates çorbası', rating: 4),
-    FoodItem(name: 'Mantı', rating: 2),
-    FoodItem(name: 'Patlıcanlı börek', rating: 4),
-    FoodItem(name: 'Mantar sote', rating: 5),
-    FoodItem(name: 'Pesto soslu makarna', rating: 5),
-    FoodItem(name: 'Karnıyarık', rating: 3),
-    FoodItem(name: 'Pırasa yemeği', rating: 1),
-    FoodItem(name: 'İçli köfte', rating: 5),
-    FoodItem(name: 'Mercimek çorbası', rating: 4),
-    FoodItem(name: 'Et sote', rating: 1),
-    FoodItem(name: 'Karnabahar', rating: 3),
-    FoodItem(name: 'Kumpir', rating: 4),
-    FoodItem(name: 'Nohut yemeği', rating: 2),
-    FoodItem(name: 'Keşkek', rating: 5),
-    FoodItem(name: 'Barbunya yemeği', rating: 3),
-    FoodItem(name: 'Bezelye yemeği', rating: 2),
-    FoodItem(name: 'Sufle', rating: 4),
-    FoodItem(name: 'Baklava', rating: 2),
-    FoodItem(name: 'Kısır', rating: 2),
-    FoodItem(name: 'Trileçe', rating: 5),
-    FoodItem(name: 'Baklava', rating: 5),
-    FoodItem(name: 'Şekerpare', rating: 4),
-    FoodItem(name: 'Muhallebi', rating: 3),
-    FoodItem(name: 'Supangle', rating: 3),
-    FoodItem(name: 'Browni', rating: 5),
-    FoodItem(name: 'Keşkül', rating: 2),
+    FoodItem(name: 'Karışık pizza', star: 4),
+    FoodItem(name: 'Patates çorbası', star: 3),
+    FoodItem(name: 'Kuru fasulye', star: 5),
+    FoodItem(name: 'Patlıcan musakka', star: 2),
+    FoodItem(name: 'Kuru biber dolması', star: 4),
+    FoodItem(name: 'Domates çorbası', star: 4),
+    FoodItem(name: 'Mantı', star: 2),
+    FoodItem(name: 'Patlıcanlı börek', star: 4),
+    FoodItem(name: 'Mantar sote', star: 5),
+    FoodItem(name: 'Pesto soslu makarna', star: 5),
+    FoodItem(name: 'Karnıyarık', star: 3),
+    FoodItem(name: 'Pırasa yemeği', star: 1),
+    FoodItem(name: 'İçli köfte', star: 5),
+    FoodItem(name: 'Mercimek çorbası', star: 4),
+    FoodItem(name: 'Et sote', star: 1),
+    FoodItem(name: 'Karnabahar', star: 3),
+    FoodItem(name: 'Kumpir', star: 4),
+    FoodItem(name: 'Nohut yemeği', star: 2),
+    FoodItem(name: 'Keşkek', star: 5),
+    FoodItem(name: 'Barbunya yemeği', star: 3),
+    FoodItem(name: 'Bezelye yemeği', star: 2),
+    FoodItem(name: 'Sufle', star: 4),
+    FoodItem(name: 'Baklava', star: 2),
+    FoodItem(name: 'Kısır', star: 2),
+    FoodItem(name: 'Trileçe', star: 5),
+    FoodItem(name: 'Baklava', star: 5),
+    FoodItem(name: 'Şekerpare', star: 4),
+    FoodItem(name: 'Muhallebi', star: 3),
+    FoodItem(name: 'Supangle', star: 3),
+    FoodItem(name: 'Browni', star: 5),
+    FoodItem(name: 'Keşkül', star: 2),
   ];
 
   @override
@@ -469,7 +466,7 @@ class FoodPage extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: List.generate(
-                food.rating,
+                food.star,
                 (index) => Icon(Icons.star, color: Colors.amber),
               ),
             ),
@@ -506,9 +503,21 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
     super.dispose();
   }
 
-  void registerUser() async {
+  void registerUser() async {         //firebase kullanıcı kayıt
+
+    try {
+      UserCredential userCredential =
+      await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+    } catch (e) {
+      print("Hata: $e");
+    }
+
 
   }
+
 
   @override
   Widget build(BuildContext context) {

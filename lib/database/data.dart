@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+
+
 class NotesScreen extends StatefulWidget {
   @override
   _NotesScreenState createState() => _NotesScreenState();
@@ -17,7 +19,7 @@ class _NotesScreenState extends State<NotesScreen> {
     super.initState();
     _queryData();
   }
-  
+
   Future<Database> _openDatabase() async {
     final String databasePath = await getDatabasesPath();
     final String path = join(databasePath, databaseName);
@@ -75,7 +77,7 @@ class _NotesScreenState extends State<NotesScreen> {
                 child: TextField(
                   controller: nameController,
                   style: TextStyle(
-                    color: Colors.deepPurple, // Yazı rengi deeppurple olarak güncellendi
+                    color: Colors.deepPurple,
                   ),
                   decoration: InputDecoration(
                     labelText: '    Tarif Ekle:',
@@ -88,12 +90,13 @@ class _NotesScreenState extends State<NotesScreen> {
               ),
               SizedBox(height: 30),
               Center(
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
                   onPressed: _addData,
                   style: ElevatedButton.styleFrom(
                     primary: Colors.deepPurple,
                   ),
-                  child: Text('Tarifi Kaydet'),
+                  icon: Icon(Icons.add), // İstediğiniz ikonu buraya ekleyebilirsiniz
+                  label: Text('EKLE'),
                 ),
               ),
               SizedBox(height: 40),
@@ -132,7 +135,8 @@ class _NotesScreenState extends State<NotesScreen> {
                           ),
                           trailing: IconButton(
                             icon: Icon(Icons.delete,
-                                color: Colors.deepPurple),
+                                color: Colors.deepPurple,
+                            ),
                             onPressed: () {
                               _deleteData(row['id']);
                             },

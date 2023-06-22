@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';      //tasarım kütüphanesi
+import 'package:firebase_core/firebase_core.dart';  //firebase bağlantı
 import 'package:eating/screen/tarifler.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';   //kIsWeb
-import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';   //authentication
+import 'package:url_launcher/url_launcher.dart';    //web
+import 'package:flutter/foundation.dart';      //kIsWeb
 import 'package:eating/database/data.dart';
 
 void main() async {
@@ -38,7 +37,76 @@ void main() async {
 
 
 
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('images/giriş.jpeg'),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 100),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(   //renk geçiş
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.black.withOpacity(.6),
+                Colors.black.withOpacity(.3),
+              ],
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              YaziHareket(),
+              SizedBox(
+                height: 30.0,
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 15),
+                width: 200,
+                child: const Text(
+                  'Sağlığın ve damak tadın için en iyisini seç!',
+                  style: TextStyle(color: Colors.white70, height: 1.5),
+                ),
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext) => const SecondScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  backgroundColor: Colors.deepPurple,
+                ),
+                child: const Text('Hoş geldiniz'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class SecondScreen extends StatelessWidget {
   const SecondScreen({Key? key}) : super(key: key);
@@ -165,313 +233,6 @@ class SecondScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('images/giriş.jpeg'),
-          ),
-        ),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 100),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(   //renk geçiş
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.black.withOpacity(.6),
-                Colors.black.withOpacity(.3),
-              ],
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              YaziHareket(),
-              SizedBox(
-                height: 30.0,
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 15),
-                width: 200,
-                child: const Text(
-                  'Sağlığın ve damak tadın için en iyisini seç!',
-                  style: TextStyle(color: Colors.white70, height: 1.5),
-                ),
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext) => const SecondScreen(),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  backgroundColor: Colors.deepPurple,
-                ),
-                child: const Text('Hoş geldiniz'),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-
-
-
-class YaziHareket extends StatefulWidget {
-
-  @override
-  _YaziHareketState createState() => _YaziHareketState();
-}
-
-class _YaziHareketState extends State<YaziHareket> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation <double> _animation;
-
-
-  @override
-  void initState() {
-    super.initState();
-    _controller =
-        AnimationController(duration: Duration(seconds: 1),vsync: this);
-    _animation =
-    CurvedAnimation(parent: _controller, curve: Curves.bounceInOut)
-      ..addListener(() => this.setState(() {}))
-      ..addStatusListener((durum) {
-        debugPrint((durum).toString());
-      });
-    _controller.repeat();
-  }  //parent neyin içinde çalışacağı curve de animasyon şekli nasıl bi hareket bekliyoruz.
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        'Tariflerin ve \nkeşfedeceklerin \nburada...',
-        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 30.0 + _animation.value  * 5,
-        ),
-      ),
-    );
-  }
-}
-
-
-
-
-
-//FİREBASE GİRİŞ KONTROL
-
-class ProfilScreen extends StatefulWidget {
-  const ProfilScreen({Key? key}) : super(key: key);
-
-  @override
-  State<ProfilScreen> createState() => _ProfilScreenState();
-}
-
-class _ProfilScreenState extends State<ProfilScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  FirebaseAuth _auth = FirebaseAuth.instance;
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  void loginUser() async {
-    String email = _emailController.text.trim();
-    String password = _passwordController.text;
-
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
-      User? user = userCredential.user;
-      if (user != null) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Başarılı"),
-              content: Text("Giriş başarılı. Kullanıcı ID: ${user.uid}"),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SecondScreen()),
-                    );
-                  },
-                  child: Text("Tamam"),
-                ),
-              ],
-            );
-          },
-        );
-      }
-    } catch (e) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Hata"),
-            content: Text("Giriş yapılamadı. Hata: $e"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Tamam"),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/1ed0ef87-f73a-4c45-8114-980a58b60c52.jpeg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Form(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    radius: 80.0,
-                    backgroundColor: Colors.white54,
-                    backgroundImage: AssetImage('images/Contacts app icon.png'),
-                  ),
-                ),
-                SizedBox(height: 30.0),
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    labelText: 'E-posta',
-                    labelStyle: TextStyle(color: Colors.white),
-                    filled: true, // Arka planı doldur
-                    fillColor: Colors.white24,
-                    border: OutlineInputBorder(),
-
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    labelText: 'Şifre',
-                    labelStyle: TextStyle(color: Colors.white),
-                    filled: true, // Arka planı doldur
-                    fillColor: Colors.white24, // Arka plan rengini belirle
-                    border: OutlineInputBorder(),
-                  ),
-                  obscureText: true,
-                ),
-                SizedBox(height: 20.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white24,
-                      ),
-                      child: Text(
-                        'Üye ol',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UserRegistrationScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white24,
-                      ),
-                      child: Text(
-                        'Giriş yap',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: loginUser,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-
-
 
 class BegeniScreen extends StatelessWidget {
   const BegeniScreen({Key? key}) : super(key: key);
@@ -757,10 +518,227 @@ class BegeniScreen extends StatelessWidget {
 }
 
 
+//FİREBASE GİRİŞ KONTROL
+
+class ProfilScreen extends StatefulWidget {
+  const ProfilScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfilScreen> createState() => _ProfilScreenState();
+}
+
+class _ProfilScreenState extends State<ProfilScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void loginUser() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text;
+
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      User? user = userCredential.user;
+      if (user != null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Başarılı"),
+              content: Text("Giriş başarılı. Kullanıcı ID: ${user.uid}"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SecondScreen()),
+                    );
+                  },
+                  child: Text("Tamam"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Hata"),
+            content: Text("Giriş yapılamadı. Hata: $e"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Tamam"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/1ed0ef87-f73a-4c45-8114-980a58b60c52.jpeg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Form(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    radius: 80.0,
+                    backgroundColor: Colors.white54,
+                    backgroundImage: AssetImage('images/Contacts app icon.png'),
+                  ),
+                ),
+                SizedBox(height: 30.0),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    labelText: 'E-posta',
+                    labelStyle: TextStyle(color: Colors.white),
+                    filled: true, // Arka planı doldur
+                    fillColor: Colors.white24,
+                    border: OutlineInputBorder(),
+
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    labelText: 'Şifre',
+                    labelStyle: TextStyle(color: Colors.white),
+                    filled: true, // Arka planı doldurdum
+                    fillColor: Colors.white24, // Arka plan rengini belirledim.
+                    border: OutlineInputBorder(),
+                  ),
+                  obscureText: true,   //şifreyi gizledim
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white24,
+                      ),
+                      child: Text(
+                        'Üye ol',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UserRegistrationScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white24,
+                      ),
+                      child: Text(
+                        'Giriş yap',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: loginUser,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 
 
+class YaziHareket extends StatefulWidget {
 
+  @override
+  _YaziHareketState createState() => _YaziHareketState();
+}
+
+class _YaziHareketState extends State<YaziHareket> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation <double> _animation;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(duration: Duration(seconds: 1),vsync: this);
+    _animation =
+    CurvedAnimation(parent: _controller, curve: Curves.bounceInOut)
+      ..addListener(() => this.setState(() {}))
+      ..addStatusListener((durum) {
+        debugPrint((durum).toString());
+      });
+    _controller.repeat();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(
+        'Tariflerin ve \nkeşfedeceklerin \nburada...',
+        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 30.0 + _animation.value  * 5,
+        ),
+      ),
+    );
+  }
+}
 
 
 
@@ -772,7 +750,7 @@ void openWebsite() async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {
-    throw 'İnternet sitesi açılamadı: $url';
+    throw 'İnternet sitesi açılamadı';
   }
 }
 
