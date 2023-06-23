@@ -412,7 +412,7 @@ class FoodItem {
   final String name;
   final int star;
 
-  FoodItem({required this.name, required this.star});
+  FoodItem({required this.name, required this.star});    //zorunlu dolacak
 }
 
 class FoodPage extends StatelessWidget {
